@@ -8,7 +8,7 @@ import processing.core.*;
  *    -Shapes and text are drawn on the screen.
  *    -Mouse and keyboard input are read in.
  */
-public class Tone extends PApplet
+public class ViolinTutorial extends PApplet
 {
     private Minim minim;
     private AudioOutput out;
@@ -23,14 +23,14 @@ public class Tone extends PApplet
     private String pitch;
     private float delayInBeats;
     private float durationInBeats;
-
+    
     /**
      * Launch the Processing Application,
      *     Calls settings() once, then setup() once, then draw() 30 times per second.
      */
     public static void main(String args[]) {
-        String packageFilename = "Tone";
-        PApplet.main(new String[] { packageFilename });
+        String packageFilename = "ViolinTutorial";
+        PApplet.main(new String[] {packageFilename});
     }
     
     /**
@@ -46,7 +46,7 @@ public class Tone extends PApplet
     public void setup() {
         white = color(255,255,255); // (r, g, b) [0, 256)
         black = color(0,0,0);
-        color1 = color(0,255,255);
+        color1 = color(255,131,248);
         
         minim = new Minim(this);
         out = minim.getLineOut( Minim.STEREO, 2048 );
@@ -60,20 +60,71 @@ public class Tone extends PApplet
      * Called repeatedly (once per frame)
      */
     public void draw() {
-        background(white); // Fill background color with white
+    	background(white); // Fill background color with white
         
         fill(color1);
-        noStroke(); // No border on the ellipse
-        ellipse(200,200,200,100); // center x, center y, width, height
+        fill(black);
+        textSize(25);
+        textAlign(CENTER, CENTER);
+        String output = "Welcome to Violin Tutorial! \nPress t for twinkle, or x to exit";
+        text(output, 200, 200);
         
+        if (key == 't' || key == 'T') {
+        	drawViolin();
+        	playTwinkle();
+        } else if (key == 'x' || key == 'X') {
+        	background(white);
+        	text("Goodbye!", 200, 200);
+        }
+              
+        
+        /*
         // Write pitch
         fill(black);
         textSize(16);
         textAlign(CENTER, CENTER);
-        String output = "Pitch: " + pitch + "\nDelay: " + delayInBeats + "\nDuration: " + durationInBeats;
+        output = "Pitch: " + pitch + "\nDelay: " + delayInBeats + "\nDuration: " + durationInBeats;
         text(output, 200, 200);
+        */
     }
-
+    
+    /*
+     * draws the violin fingerboard
+     */
+    
+    public void drawViolin() {
+    	background(white); // Fill background color with white
+     
+        fill(black);
+        rect(120,40,5,300); // center x, center y, width, height
+        String output = "G";
+        text(output, 122, 360);
+        fill(black);
+        rect(170,40,5,300); // center x, center y, width, height
+        output = "D";
+        text(output, 173, 360);
+        fill(black);
+        rect(220,40,5,300); // center x, center y, width, height
+        output = "A";
+        text(output, 224, 360);
+        fill(black);
+        rect(270,40,5,300); // center x, center y, width, height
+        output = "E";
+        text(output, 273, 360);  
+        output ="Sridhar";
+        //Just testing
+    }
+    public void playTwinkle() {
+    	ellipse(200,200,200,100);
+    }
+    
+    public void G3() {
+    	delayInBeats = 0;
+    	durationInBeats = 1;
+    	pitch = "G3";
+    	
+    	out.playNote(delayInBeats, durationInBeats, pitch);
+    }
     /**
      * Handle Key Press (Down)
      */
@@ -83,6 +134,21 @@ public class Tone extends PApplet
         }
         else if(key == 'c') {
             pitch = "C4";
+        }
+        else if(key == 'd') {
+        	pitch = "D4";
+        }
+        else if (key == '1') {
+        	durationInBeats += 0.5;
+        }
+        else if (key == '2' && durationInBeats >= 0.5) {
+        	durationInBeats -= 0.5;
+        }
+        else if (key == '4') {
+        	delayInBeats += 0.5;
+        }
+        else if (key == '5' && delayInBeats >= 0.5) {
+        	delayInBeats -= 0.5;
         }
         // TODO 1: If a user presses the 'd' key, change the pitch to "D4"
         
