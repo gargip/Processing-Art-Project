@@ -23,6 +23,7 @@ public class ViolinTutorial extends PApplet
     private String pitch;
     private float delayInBeats;
     private float durationInBeats;
+    private int A3 = 30;
     
     /**
      * Launch the Processing Application,
@@ -71,12 +72,17 @@ public class ViolinTutorial extends PApplet
         
         if (key == 't' || key == 'T') {
         	drawViolin();
+        	while (A3 >= 0) {
+            	fill(red);
+            	noStroke();
+            	ellipse(123,110,40,40);
+            	A3--;
+            }
         } else if (key == 'x' || key == 'X') {
         	background(white);
          	text("Goodbye!", 200, 200);
         }
-        
-                 
+                
         /*
         // Write pitch
         fill(black);
@@ -116,15 +122,45 @@ public class ViolinTutorial extends PApplet
     }
     
     public void playTwinkle() {
-    	A3();
+    	c4();
+    	c4();
+    	g4();
+    	g4();
+    	a4();
+    	a4();
+    	durationInBeats += 0.5;
+    	g4();
+    	durationInBeats -= 0.5;
+    	f4();
+    	f4();
+    	d4();
+    	d4();
+    	durationInBeats += 0.5;
+    	c4();
+    	durationInBeats -= 0.5;
+    	
     }
     
-    public void A3() {
-    	fill(red);
-    	noStroke();
-    	ellipse(123,110,40,40);
-        out.playNote(delayInBeats, durationInBeats, "A3");
-    }
+    public void g3() {        out.playNote(delayInBeats, durationInBeats, "G3");    }
+    public void a3() {        out.playNote(delayInBeats, durationInBeats, "A3");    }
+    public void b3() {        out.playNote(delayInBeats, durationInBeats, "B3");    }
+    public void c4() {        out.playNote(delayInBeats, durationInBeats, "C4");    }
+    
+    public void d4() {        out.playNote(delayInBeats, durationInBeats, "D4");    }
+    public void e4() {        out.playNote(delayInBeats, durationInBeats, "E4");    }
+    public void f4() {        out.playNote(delayInBeats, durationInBeats, "F4");    }
+    public void g4() {        out.playNote(delayInBeats, durationInBeats, "G4");    }
+    
+    public void a4() {        out.playNote(delayInBeats, durationInBeats, "A4");    }
+    public void b4() {        out.playNote(delayInBeats, durationInBeats, "B4");    }
+    public void c5() {        out.playNote(delayInBeats, durationInBeats, "C5");    }
+    public void d5() {        out.playNote(delayInBeats, durationInBeats, "D5");    }
+    
+    public void e5() {        out.playNote(delayInBeats, durationInBeats, "E5");    }
+    public void f5() {        out.playNote(delayInBeats, durationInBeats, "F5");    }
+    public void g5() {        out.playNote(delayInBeats, durationInBeats, "G5");    }
+    public void a5() {        out.playNote(delayInBeats, durationInBeats, "A5");    }
+    public void b5() {        out.playNote(delayInBeats, durationInBeats, "B5");    }
     /**
      * Handle Key Press (Down)
      */
