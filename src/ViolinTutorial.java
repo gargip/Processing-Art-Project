@@ -1,4 +1,5 @@
 import ddf.minim.AudioOutput;
+import java.lang.*;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import processing.core.*;
@@ -23,7 +24,9 @@ public class ViolinTutorial extends PApplet
     private String pitch;
     private float delayInBeats;
     private float durationInBeats;
-    private int A3 = 30;
+    private long t= System.currentTimeMillis();
+    //private int A3 = 100;    
+    
     
     /**
      * Launch the Processing Application,
@@ -72,17 +75,12 @@ public class ViolinTutorial extends PApplet
         
         if (key == 't' || key == 'T') {
         	drawViolin();
-        	while (A3 >= 0) {
-            	fill(red);
-            	noStroke();
-            	ellipse(123,110,40,40);
-            	A3--;
-            }
         } else if (key == 'x' || key == 'X') {
         	background(white);
          	text("Goodbye!", 200, 200);
         }
-                
+        
+               
         /*
         // Write pitch
         fill(black);
@@ -122,22 +120,48 @@ public class ViolinTutorial extends PApplet
     }
     
     public void playTwinkle() {
-    	c4();
-    	c4();
-    	g4();
-    	g4();
-    	a4();
-    	a4();
-    	durationInBeats += 0.5;
-    	g4();
-    	durationInBeats -= 0.5;
-    	f4();
-    	f4();
-    	d4();
-    	d4();
-    	durationInBeats += 0.5;
-    	c4();
-    	durationInBeats -= 0.5;
+    	System.out.println("start playTwinkle");
+    	System.out.println("set t to current time");
+    	long end = t+10;
+    	System.out.println("set end to current t+100");
+    	while(t < end) {
+    		System.out.println("enter while loop");
+    		out.playNote(0.0f, 0.5f, "C4");
+    		System.out.println("played note");
+    		fill(red);
+        	noStroke();
+        	ellipse(123,110,40,40);
+    	}
+//    	drawViolin();    	
+//    	out.playNote(0.5f, durationInBeats, "C4");
+//    	out.playNote(1f, durationInBeats, "G4");
+//    	out.playNote(1.5f, durationInBeats, "G4");
+//    	out.playNote(2f, durationInBeats, "A4");
+//    	out.playNote(2.5f, 1f, "A4");
+//    	out.playNote(3f, durationInBeats, "G4"); // HALF NOTE
+//    	out.playNote(4f, durationInBeats, "F4");
+//    	out.playNote(4.5f, durationInBeats, "F4");
+//    	out.playNote(5f, durationInBeats, "E4");
+//    	out.playNote(5.5f, durationInBeats, "E4");
+//    	out.playNote(6f, durationInBeats, "D4");
+//    	out.playNote(6.5f, durationInBeats, "D4");
+//    	out.playNote(7f, 1f, "C4"); //HALF NOTE
+    	
+    	//c4();
+//    	g4();
+//    	g4();
+//    	a4();
+//    	a4();
+//    	durationInBeats += 0.5;
+//    	g4();
+//    	durationInBeats -= 0.5;
+//    	f4();
+//    	f4();
+//    	d4();
+//    	d4();
+//    	durationInBeats += 0.5;
+//    	c4();
+//    	durationInBeats -= 0.5;
     	
     }
     
